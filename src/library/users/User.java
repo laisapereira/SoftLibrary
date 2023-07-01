@@ -1,3 +1,12 @@
+package library.users;
+
+
+import library.services.Booking;
+import library.services.IValidateLoan;
+import library.services.Loan;
+
+import java.util.List;
+
 public class User {
 
     protected int id;
