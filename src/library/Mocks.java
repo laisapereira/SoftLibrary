@@ -15,8 +15,7 @@ public class Mocks {
 
     }
 
-
-    public void setMockbooks() {
+    public void setMockBooks() {
         Book b1 = new Book(100, "Engenharia de Software", "AddisonWesley", "Ian Sommervile",
                 "6ª", "2000", 2);
         books.add(b1);

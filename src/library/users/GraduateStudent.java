@@ -2,5 +2,18 @@ package library.users;
 
 public class GraduateStudent extends User {
 
+    public GraduateStudent(String name, int id) {
+        this.typeLoan = new LoanGraduateStudent();
+        this.maxBooking = Integer.MAX_VALUE;
+        this.maxLoan = 3;
+        this.maxTimeLoan = 3;
+        this.name = name;
+        this.id = id;
+        this.amountLoan = new ArrayList<Loan>();
+        this.amountBooking = new ArrayList<Booking>();
+    }
+}
+
+
 
 }

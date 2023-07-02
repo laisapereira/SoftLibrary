@@ -51,16 +51,16 @@ public class Book {
         ArrayList<BookCopy> bookCopiesAvaliable = new ArrayList<BookCopy>();
 
         for (BookCopy bookCopy : bookCopies) {
-                if (bookCopy.isAvailable()) {
+            if (bookCopy.isAvailable()) {
                 bookCopiesAvaliable.add(bookCopy);
             }
         }
 
-            return bookCopiesAvaliable;
+        return bookCopiesAvaliable;
     }
 
 
-   public ArrayList<BookCopy> getBookCopiesUnavaliable() {
+    public ArrayList<BookCopy> getBookCopiesUnavaliable() {
 
         ArrayList<BookCopy> bookCopiesUnavaliable = new ArrayList<BookCopy>();
 
@@ -145,7 +145,7 @@ public class Book {
         }
     }
 
-   @Override
+    @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +

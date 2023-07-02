@@ -1,13 +1,14 @@
 package library.users;
 
 
+import library.books.Book;
 import library.services.Booking;
-import library.services.IValidateLoan;
+import library.services.ILoan;
 import library.services.Loan;
 
 import java.util.List;
 
-public class User {
+public abstract class User {
 
     public int getId() {
         return id;
@@ -17,7 +18,7 @@ public class User {
         return name;
     }
 
-    public IValidateLoan getTypeLoan() {
+    public ILoan getTypeLoan() {
         return typeLoan;
     }
 
@@ -44,7 +45,7 @@ public class User {
     protected int id;
     protected String name;
 
-    protected IValidateLoan typeLoan;
+    protected ILoan typeLoan;
     protected int maxBooking;
     protected int maxLoan;
     protected int maxTimeLoan;
@@ -57,5 +58,12 @@ public class User {
     }
 
 
+    public boolean isBookedBook(Book book) {
+        return false;
+    }
 
+    public boolean isDebtor() {
+
+        return false;
+    }
 }

@@ -1,9 +1,10 @@
 package library.services;
 
+import library.books.Book;
 import library.users.User;
 
-import java.awt.print.Book;
 
-public interface IValidateLoan {
+
+public interface ILoan {
     public boolean validateLoan(User user, Book book);
 }
