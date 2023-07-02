@@ -1,6 +1,9 @@
 package library.books;
 
 import library.services.Booking;
+import library.services.Loan;
+import library.users.User;
+
 
 import java.util.ArrayList;
 
@@ -19,7 +22,8 @@ public class Book {
     ArrayList <Booking> bookings;
 
 
-    public Book(int id, String title, String publishers, String authors, String edition, String yearPublication, int amountCopies) {
+    public Book(int id, String title, String publishers, String authors, String edition, String yearPublication,
+                int amountCopies) {
         this.id = id;
         this.title = title;
         this.publishers = publishers;
@@ -82,23 +86,82 @@ public class Book {
         return getBookCopiesAvaliable().size() > 0;
     }
 
+    public int getAmountCopies() {
+        return getBookCopiesAvaliable().size();
+    }
 
+    public boolean isBookedUser(User user) {
+        for (BookCopy bookCopy : this.getBookCopiesUnavaliable()) {
+            if (bookCopy.getLoan().getUser() == user) {
+                return true;
+            }
+        }
+        return false;
 
+    }
 
+    public BookCopy getBookCopyLoanable(){
+        return getBookCopiesAvaliable().get(0);
+    }
 
+    public ArrayList<Booking> getActiveBookings() {
+        ArrayList<Booking> activeBookings = new ArrayList<Booking>();
 
+        for (Booking booking : bookings) {
+            if (booking.isActive()) {
+                activeBookings.add(booking);
+            }
+        }
+        return activeBookings;
+    }
 
+    public void aboutBooking(){
+        int amountActiveBookings = getActiveBookings().size();
 
+        System.out.println("Título do livro: " + this.getTitle());
+        System.out.println("Quantidade de reservas: " + amountActiveBookings);
 
+        if (amountActiveBookings > 0) {
+            for (Booking booking: this.getActiveBookings()) {
+                System.out.println("Reserva realizada por:" + booking.getUser().getName() );
 
+            }
+        }
+    }
 
+    public void aboutAvailability() {
+        int amountActiveBookings = getActiveBookings().size();
+        System.out.println("Cópias disponíveis (número): " + this.getAmountCopies());
+    }
 
+    public void aboutLoan() {
+        System.out.println("Empréstimos realizados: ");
+        for (BookCopy bookCopy : this.getBookCopiesUnavaliable()) {
+            Loan loan = bookCopy.getLoan();
+            User userLoan = loan.getUser();
+            System.out.println(bookCopy.getId() + " PARA: " + userLoan.getName() +
+                    " - Data do emprestimo: " + loan.getDateStartLoan() + " - Data esperada para devolução: " +
+                    loan.dateExpectedReturn());
+        }
+    }
 
-
-
-
-
+   @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", publishers='" + publishers + '\'' +
+                ", authors='" + authors + '\'' +
+                ", edition='" + edition + '\'' +
+                ", yearPublication='" + yearPublication + '\'' +
+                ", amountCopies=" + amountCopies +
+                ", bookCopies=" + bookCopies +
+                ", bookings=" + bookings +
+                '}';
+    }
 }
+
+// classe obervador e de notificação
 
 
 

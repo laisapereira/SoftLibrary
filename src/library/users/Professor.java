@@ -1,4 +1,4 @@
 package library.users;
 
-public class Professor {
+public class Professor extends User {
 }

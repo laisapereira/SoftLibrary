@@ -1,4 +1,6 @@
 package library.users;
 
-public class GraduateStudent {
+public class GraduateStudent extends User {
+
+
 }
