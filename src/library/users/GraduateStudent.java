@@ -1,5 +1,12 @@
 package library.users;
 
+import library.services.Booking;
+import library.services.Loan;
+import library.users.loan.users.LoanGraduateStudent;
+
+import java.util.ArrayList;
+
+
 public class GraduateStudent extends User {
 
     public GraduateStudent(String name, int id) {
@@ -16,4 +23,4 @@ public class GraduateStudent extends User {
 
 
 
-}
+

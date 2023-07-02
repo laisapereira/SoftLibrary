@@ -1,6 +1,9 @@
 package library;
 
 import library.books.Book;
+import library.users.GraduateStudent;
+import library.users.PostGraduateStudent;
+import library.users.Professor;
 import library.users.User;
 
 
@@ -48,6 +51,22 @@ public class Mocks {
                 "Martin Fowler", "3ª", "2003", 3);
         books.add(b8);
     }
+
+    public void setMockUsers() {
+        ArrayList<User> users = new ArrayList<User>();
+        User professor = new Professor("Carlos Lucena", 100);
+        users.add(professor);
+
+        User graduateStudent1 = new GraduateStudent("João da Silva", 123);
+        users.add(graduateStudent1);
+
+        User graduateStudent2 = new GraduateStudent("Pedro Paulo", 789);
+        users.add(graduateStudent2);
+
+        User postGraduateStudent = new PostGraduateStudent("Luiz Fernando Rodrigues", 456);
+        users.add(postGraduateStudent);
+    }
+
 
 
 
