@@ -11,6 +11,10 @@ public class BookCopy {
 
     private Loan loan;
 
+    public void setLoan(Loan loan) {
+        this.loan = loan;
+    }
+
     public BookCopy(int id, Book book) {
         this.id = id;
         this.book = book;

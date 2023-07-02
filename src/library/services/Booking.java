@@ -15,14 +15,19 @@ public class Booking {
     LocalDate dateStartBooking;
 
 
-    public Booking(int id, User user, Book book) {
-        this.id = id;
+    public Booking(User user, Book book) {
         this.user = user;
         this.book = book;
         this.dateEndingBooking = null;
         this.dateStartBooking = LocalDate.now();
         this.book.addBooking(this);
     }
+
+    public Booking(int id, User user, Book book) {
+        this(user, book);
+        this.id = id;
+    }
+
 
     public int getId() {
         return id;
