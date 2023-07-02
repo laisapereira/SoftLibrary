@@ -9,6 +9,38 @@ import java.util.List;
 
 public class User {
 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public IValidateLoan getTypeLoan() {
+        return typeLoan;
+    }
+
+    public int getMaxBooking() {
+        return maxBooking;
+    }
+
+    public int getMaxLoan() {
+        return maxLoan;
+    }
+
+    public int getMaxTimeLoan() {
+        return maxTimeLoan;
+    }
+
+    public List<Loan> getAmountLoan() {
+        return amountLoan;
+    }
+
+    public List<Booking> getAmountBooking() {
+        return amountBooking;
+    }
+
     protected int id;
     protected String name;
 
