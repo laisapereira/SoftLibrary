@@ -4,6 +4,7 @@ import library.books.Book;
 import library.books.BookCopy;
 import library.services.Booking;
 import library.services.Loan;
+
 import library.users.User;
 
 
@@ -34,10 +35,9 @@ public class Library {
         books.addAll(mocks.getBooks());
         users.addAll(mocks.getUsers());
     }
-
     // sobre os usuários
 
-    public User getUserById(int id) {
+    public User getUserById(int id){
         for (User user : users) {
             if (user.getId() == id) {
                 return user;
@@ -46,7 +46,7 @@ public class Library {
         return null;
     }
 
-    public void aboutUser(int userId) {
+    public void aboutUser(int userId){
         User user = getUserById(userId);
         System.out.println(user.toString());
         user.aboutBookings();
@@ -56,7 +56,7 @@ public class Library {
     // sobre os livros
 
 
-    public Book getBookById(int id) {
+    public Book getBookById(int id){
         for (Book book : books) {
             if (book.getId() == id) {
                 return book;
@@ -65,16 +65,17 @@ public class Library {
         return null;
     }
 
-    public void aboutBook(int bookId) {
+    public void aboutBook(int bookId){
         Book book = getBookById(bookId);
         System.out.println(book.toString());
         book.aboutAvailability();
+        book.aboutBooking();
         book.aboutLoan();
     }
 
     // ações usuário-livro
 
-    public void Booking(int userId, int bookId) {
+    public void Booking(int userId, int bookId){
         User user = getUserById(userId);
         Book book = getBookById(bookId);
 
@@ -89,7 +90,7 @@ public class Library {
 
     }
 
-    public void Loan(int userId, int bookId) {
+    public void Loan(int userId, int bookId){
         User user = getUserById(userId);
         Book book = getBookById(bookId);
 
@@ -113,7 +114,7 @@ public class Library {
     }
 
 
-    public void returnBook(int userId, int bookId) {
+    public void returnBook(int userId, int bookId){
         User user = getUserById(userId);
         Book book = getBookById(bookId);
 
@@ -127,5 +128,6 @@ public class Library {
 
 
     // add observador
+
 
 }

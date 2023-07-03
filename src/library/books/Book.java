@@ -1,13 +1,17 @@
 package library.books;
 
+import library.controllers.observers.Notify;
+import library.controllers.observers.IObserver;
 import library.services.Booking;
 import library.services.Loan;
 import library.users.User;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
-public class Book {
+public class Book implements Notify {
 
     private int id;
     private String title;
@@ -17,6 +21,8 @@ public class Book {
     private String yearPublication;
 
     private int amountCopies;
+
+    private List<IObserver> notifyList;
 
     ArrayList<BookCopy> bookCopies;
     ArrayList <Booking> bookings;
@@ -31,12 +37,17 @@ public class Book {
         this.edition = edition;
         this.yearPublication = yearPublication;
 
+        this.bookings = new ArrayList<Booking>();
+        this.notifyList = new ArrayList<IObserver>();
+        this.bookCopies = new ArrayList<BookCopy>();
+
+
         for (int i = 0; i < amountCopies; i++) {
             BookCopy bookCopy = new BookCopy(i, this);
-            bookCopies.add(bookCopy);
+            this.bookCopies.add(bookCopy);
         }
 
-        this.bookings = new ArrayList<Booking>();
+
     }
 
     public int getId() {
@@ -75,7 +86,9 @@ public class Book {
     public void addBooking(Booking bookingBook) {
         bookings.add(bookingBook);
 
-        // notificar pela quantidade de reserva
+        if (getActiveBookings().size() > 1) {
+            notifyObserver(this);
+        }
     }
 
     public int getAmountBookings() {
@@ -159,9 +172,21 @@ public class Book {
                 ", bookings=" + bookings +
                 '}';
     }
+
+    @Override
+    public void notifyObserver(Book book) {
+        notifyList.forEach(observer -> observer.update());
+    }
+
+    @Override
+    public void addObserver(IObserver observer) {
+        notifyList.add(observer);
+    }
 }
 
-// classe obervador e de notificação
+
+
+
 
 
 
