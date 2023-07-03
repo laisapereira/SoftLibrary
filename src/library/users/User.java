@@ -47,9 +47,9 @@ public abstract class User {
     protected ILoan typeLoan;
 
 
-    public boolean isBookedBook(Book book) {
+  /*  public boolean isBookedBook(Book book) {
         return false;
-    }
+    }*/
 
     public boolean isDebtor() {
         for (Loan loan : amountLoan) {
@@ -123,27 +123,28 @@ public abstract class User {
     }
 
     public void aboutLoans() {
-        System.out.println("Quantidade de emprestimos: " + amountLoan.size());
-        System.out.println("Informação sobre os emprestimos:");
+        System.out.println("Quantidade de empréstimos: " + amountLoan.size());
+        System.out.println("Informações sobre os empréstimos: ");
 
-        for (Loan loan: amountLoan) {
-            String statusMessage = loan.isActive() ? "Aberto" : "Fechado";
-            String returnedMessage;
-            LocalDate returnedDate = loan.getDateEndingLoan();
+        if (amountLoan.size() > 0) {
+            for (Loan loan : amountLoan) {
+                String statusMessage = loan.isActive() ? "Aberto" : "Fechado";
+                String returnedMessage = loan.isActive() ? "\n Data esperada para devolução: " + loan.dateExpectedReturn() :
+                        "\n Data de devolução: " + loan.getDateEndingLoan();
 
-            if (returnedDate != null) {
-                returnedMessage = " - Data de devolução: " + returnedDate.toString();
-            } else
-                returnedMessage = " - Data experada para devolução: " + returnedDate.toString();
-
-            System.out.println("Título do livro: " + loan.getBookCopy().getBook().getTitle() +
-                    " - Status do emprestimo: " + statusMessage +
-                    " - Data do emprestimo: " + loan.getDateStartLoan() + returnedMessage);
+                System.out.println("Título do livro: " + loan.getBookCopy().getBook().getTitle() +
+                        "\n Status do empréstimo: " + statusMessage +
+                        "\n Data do empréstimo: " + loan.getDateStartLoan() +
+                        returnedMessage);
+            }
+        } else {
+            System.out.println("Não há empréstimos.");
         }
     }
 
+
+
     public void aboutBookings() {
-        System.out.println("Informação sobre as reservas:");
 
         if (amountBooking.size() > 0) {
             for(Booking booking: amountBooking) {
@@ -154,17 +155,20 @@ public abstract class User {
                 }
 
                 System.out.println("Título do livro: " + booking.getBook().getTitle() +
-                        " - Data de solicitação da reserva: " + booking.getDateStartBooking() +
-                        " - Data de finalização da reserva: " + endingBookingMessage);
+                        "\n Data de solicitação da reserva: " + booking.getDateStartBooking() +
+                        "\n Data de finalização da reserva: " + endingBookingMessage);
             }
+        } else{
+
+            System.out.println("Informação sobre as reservas: não há.");
         }
     }
 
 
     public String toString() {
         return "Nome: " + this.name +
-                " - Quantidade de emprestimos: " + amountLoan.size() +
-                " - Quantidade de reservas: " + amountBooking.size()
+                "\n Quantidade de emprestimos: " + amountLoan.size() +
+                "\n Quantidade de reservas: " + amountBooking.size()
                 ;
     }
 }

@@ -8,7 +8,6 @@ import library.users.User;
 
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Book implements Notify {
@@ -20,7 +19,6 @@ public class Book implements Notify {
     private String edition;
     private String yearPublication;
 
-    private int amountCopies;
 
     private List<IObserver> notifyList;
 
@@ -37,7 +35,7 @@ public class Book implements Notify {
         this.edition = edition;
         this.yearPublication = yearPublication;
 
-        this.bookings = new ArrayList<Booking>();
+        this.bookings = new ArrayList<>();
         this.notifyList = new ArrayList<IObserver>();
         this.bookCopies = new ArrayList<BookCopy>();
 
@@ -58,9 +56,6 @@ public class Book implements Notify {
         return title;
     }
 
-    public void addBookCopies(BookCopy bookCopy){
-        bookCopies.add(bookCopy);
-    }
 
     public ArrayList<BookCopy> getBookCopiesAvaliable() {
         ArrayList<BookCopy> bookCopiesAvaliable = new ArrayList<BookCopy>();
@@ -107,16 +102,15 @@ public class Book implements Notify {
         return getBookCopiesAvaliable().size();
     }
 
-    public boolean isBookedUser(User user) {
-        for (BookCopy bookCopy : this.getBookCopiesUnavaliable()) {
-            if (bookCopy.getLoan().getUser() == user) {
-                return true;
-            }
-        }
-        return false;
+    /*  public boolean isLoanedToUser(User user) {
+           for (BookCopy bookCopy : this.getBookCopiesUnavaliable()) {
+               if (bookCopy.getLoan().getUser() == user) {
+                   return true;
+               }
+           }
+           return false;
 
-    }
-
+       }*/
     public BookCopy getBookCopyLoanable(){
         return getBookCopiesAvaliable().get(0);
     }
@@ -147,7 +141,6 @@ public class Book implements Notify {
     }
 
     public void aboutAvailability() {
-        int amountActiveBookings = getActiveBookings().size();
         System.out.println("Cópias disponíveis (número): " + this.getAmountCopies());
     }
 
@@ -157,25 +150,24 @@ public class Book implements Notify {
             Loan loan = bookCopy.getLoan();
             User userLoan = loan.getUser();
             System.out.println(bookCopy.getId() + " Para: " + userLoan.getName() +
-                    " - Data do emprestimo: " + loan.getDateStartLoan() + " - Data esperada para devolução: " +
+                    "\n Data do empréstimo: " + loan.getDateStartLoan() + "\n Data esperada para devolução: " +
                     loan.dateExpectedReturn());
         }
     }
 
     @Override
     public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", publishers='" + publishers + '\'' +
-                ", authors='" + authors + '\'' +
-                ", edition='" + edition + '\'' +
-                ", yearPublication='" + yearPublication + '\'' +
-                ", amountCopies=" + amountCopies +
-                ", bookCopies=" + bookCopies +
-                ", bookings=" + bookings +
-                '}';
+        return "Informações sobre o Livro pedido: " +
+                "\n  ID: " + id +
+                "\n  Título: '" + title + '\'' +
+                "\n  Editora: '" + publishers + '\'' +
+                "\n  Autores: '" + authors + '\'' +
+                "\n  Edição: '" + edition + '\'' +
+                "\n  Ano de Publicação: '" + yearPublication + '\'' +
+                "\n  Cópias do Livro: " + bookCopies.size()
+                ;
     }
+
 
     @Override
     public void notifyObserver(Book book) {

@@ -69,7 +69,7 @@ public class Library {
     public void aboutBook(int bookId){
         Book book = getBookById(bookId);
         System.out.println(book.toString());
-       /* book.aboutAvailability();*/
+        book.aboutAvailability();
         book.aboutBooking();
         book.aboutLoan();
     }
@@ -85,9 +85,7 @@ public class Library {
             user.addBooking(booking);
             book.addBooking(booking);
             System.out.println("Reserva realizada de " + book.getTitle() + "  para  " + user.getName());
-
         }
-
     }
 
     public void Loan(int userId, int bookId){
@@ -122,6 +120,8 @@ public class Library {
 
 
     }
+
+    // interacao classe observador
 
     public void addObserver(int userId, int bookId){
         getBookById(bookId).addObserver((IObserver) getUserById(userId));
