@@ -1,10 +1,10 @@
-package library.books;
+package library.services.books;
 
 import library.controllers.observers.Notify;
 import library.controllers.observers.IObserver;
 import library.services.Booking;
 import library.services.Loan;
-import library.users.User;
+import library.services.users.User;
 
 
 import java.util.ArrayList;
@@ -39,12 +39,10 @@ public class Book implements Notify {
         this.notifyList = new ArrayList<IObserver>();
         this.bookCopies = new ArrayList<BookCopy>();
 
-
         for (int i = 0; i < amountCopies; i++) {
             BookCopy bookCopy = new BookCopy(i, this);
             this.bookCopies.add(bookCopy);
         }
-
 
     }
 
@@ -61,7 +59,9 @@ public class Book implements Notify {
         ArrayList<BookCopy> bookCopiesAvaliable = new ArrayList<BookCopy>();
 
         for (BookCopy bookCopy : bookCopies) {
-            if (bookCopy.isAvailable()) {
+            if (bookCopy.getLoan() == null) {
+                bookCopiesAvaliable.add(bookCopy);
+            } else if (!bookCopy.getLoan().isActive()) {
                 bookCopiesAvaliable.add(bookCopy);
             }
         }
@@ -75,8 +75,10 @@ public class Book implements Notify {
         ArrayList<BookCopy> bookCopiesUnavaliable = new ArrayList<BookCopy>();
 
         for (BookCopy bookCopy : bookCopies) {
-            if (!bookCopy.isAvailable()) {
-                bookCopiesUnavaliable.add(bookCopy);
+            if (bookCopy.getLoan() != null) {
+                if (bookCopy.getLoan().isActive()) {
+                    bookCopiesUnavaliable.add(bookCopy);
+                }
             }
         }
         return bookCopiesUnavaliable;
@@ -102,16 +104,7 @@ public class Book implements Notify {
         return getBookCopiesAvaliable().size();
     }
 
-    /*  public boolean isLoanedToUser(User user) {
-           for (BookCopy bookCopy : this.getBookCopiesUnavaliable()) {
-               if (bookCopy.getLoan().getUser() == user) {
-                   return true;
-               }
-           }
-           return false;
-
-       }*/
-    public BookCopy getBookCopyLoanable(){
+    public BookCopy getBookCopyLoanable() {
         return getBookCopiesAvaliable().get(0);
     }
 

@@ -1,8 +1,8 @@
-package library.users;
+package library.services.users;
 
 import library.services.Booking;
 import library.services.Loan;
-import library.users.loan.users.LoanGraduateStudent;
+import library.services.users.loan.users.LoanGraduateStudent;
 
 import java.util.ArrayList;
 

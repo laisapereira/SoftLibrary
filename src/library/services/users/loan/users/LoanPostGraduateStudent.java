@@ -1,8 +1,8 @@
-package library.users.loan.users;
+package library.services.users.loan.users;
 
-import library.books.Book;
+import library.services.books.Book;
 import library.services.ILoan;
-import library.users.User;
+import library.services.users.User;
 
 
 public class LoanPostGraduateStudent implements ILoan {

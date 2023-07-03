@@ -1,13 +1,11 @@
-package library.books;
+package library.services.books;
 
-import library.services.Booking;
 import library.services.Loan;
 
 public class BookCopy {
 
     private int id;
     private Book book;
-    private boolean available = true;
 
     private Loan loan;
 
@@ -20,9 +18,9 @@ public class BookCopy {
         this.book = book;
     }
 
-  public Loan getLoan() {
-           return loan;
-       }
+    public Loan getLoan() {
+        return loan;
+    }
 
     public int getId() {
         return id;
@@ -32,12 +30,6 @@ public class BookCopy {
         return book;
     }
 
-    public boolean isAvailable() {
-        return available;
-    }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
 
 }

@@ -1,12 +1,12 @@
 package library;
 
-import library.books.Book;
-import library.books.BookCopy;
+import library.services.books.Book;
+import library.services.books.BookCopy;
 import library.controllers.observers.IObserver;
 import library.services.Booking;
 import library.services.Loan;
 
-import library.users.User;
+import library.services.users.User;
 
 
 import java.util.ArrayList;

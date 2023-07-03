@@ -1,7 +1,7 @@
 package library.services;
 
-import library.books.Book;
-import library.users.User;
+import library.services.books.Book;
+import library.services.users.User;
 
 
 

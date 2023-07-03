@@ -1,7 +1,7 @@
 package library.services;
 
-import library.books.BookCopy;
-import library.users.User;
+import library.services.books.BookCopy;
+import library.services.users.User;
 
 import java.time.LocalDate;
 
@@ -45,7 +45,7 @@ public class Loan {
     public void cancelLoan() {
         dateEndingLoan = LocalDate.now();
         isActive = false;
-        /*this.bookCopy.setAvailable(true);*/
+
     }
 
     public LocalDate dateExpectedReturn() {

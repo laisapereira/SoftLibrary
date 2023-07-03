@@ -1,18 +1,18 @@
-package library.users;
+package library.services.users;
 
 import library.services.Booking;
 import library.services.Loan;
-import library.users.loan.users.LoanPostGraduateStudent;
+import library.services.users.loan.users.LoanProfessor;
 
 import java.util.ArrayList;
 
-public class PostGraduateStudent extends User {
+public class Professor extends User {
 
-    public PostGraduateStudent(String name, int id) {
-        this.typeLoan = new LoanPostGraduateStudent();
+    public Professor(String name, int id) {
+        this.typeLoan = new LoanProfessor();
         this.maxBooking = Integer.MAX_VALUE;
-        this.maxLoan = 4;
-        this.maxTimeLoan = 4;
+        this.maxLoan = Integer.MAX_VALUE;
+        this.maxTimeLoan = 7;
         this.name = name;
         this.id = id;
         this.amountLoan = new ArrayList<Loan>();

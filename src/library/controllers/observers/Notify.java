@@ -1,6 +1,6 @@
 package library.controllers.observers;
 
-import library.books.Book;
+import library.services.books.Book;
 
 public interface Notify {
 

@@ -1,7 +1,7 @@
-package library.users;
+package library.services.users;
 
 
-import library.books.Book;
+import library.services.books.Book;
 import library.services.Booking;
 import library.services.ILoan;
 import library.services.Loan;
@@ -46,10 +46,6 @@ public abstract class User {
 
     protected ILoan typeLoan;
 
-
-  /*  public boolean isBookedBook(Book book) {
-        return false;
-    }*/
 
     public boolean isDebtor() {
         for (Loan loan : amountLoan) {
@@ -135,13 +131,12 @@ public abstract class User {
                 System.out.println("Título do livro: " + loan.getBookCopy().getBook().getTitle() +
                         "\n Status do empréstimo: " + statusMessage +
                         "\n Data do empréstimo: " + loan.getDateStartLoan() +
-                        returnedMessage);
+                        returnedMessage + "\n");
             }
         } else {
             System.out.println("Não há empréstimos.");
         }
     }
-
 
 
     public void aboutBookings() {

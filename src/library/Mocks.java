@@ -1,12 +1,10 @@
 package library;
 
-import library.books.Book;
-import library.books.BookCopy;
-import library.services.Booking;
-import library.users.GraduateStudent;
-import library.users.PostGraduateStudent;
-import library.users.Professor;
-import library.users.User;
+import library.services.books.Book;
+import library.services.users.GraduateStudent;
+import library.services.users.PostGraduateStudent;
+import library.services.users.Professor;
+import library.services.users.User;
 
 
 import java.util.ArrayList;
