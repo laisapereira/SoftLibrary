@@ -68,7 +68,7 @@ public abstract class User {
         if (getAmountBooking() < maxBooking) {
             return true;
         }
-        System.out.println("Não foi possível realizar o agendamento, pois o usuário: " + this.getName() + " já possui " + maxBooking + " reservas.");
+        System.out.println("Não foi possível realizar a reserva, pois o usuário: " + this.getName() + " já possui " + maxBooking + " reservas.");
         return false;
 
     }

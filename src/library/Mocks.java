@@ -31,11 +31,9 @@ public class Mocks {
         books.add(b2);
 
 
-
         Book b3 = new Book(200, "Code Complete", "Microsoft Press", "Steve McConnell",
                 "2ª", "2014", 1);
         books.add(b3);
-
 
 
         Book b4 = new Book(201, "Agile Software Development, Principles, Patterns", "Prentice Hall", "Robert Martin",
@@ -43,17 +41,14 @@ public class Mocks {
         books.add(b4);
 
 
-
         Book b5 = new Book(300, "Refactoring: Improving the Design of Existing Code", "AddisonWesley Professional", "Martin Fowler",
                 "1ª", "1999", 2);
         books.add(b5);
 
 
-
         Book b6 = new Book(301, "Software Metrics: A Rigorous and Practical Approach", "CRC Press", "Norman Fenton, James Bieman",
                 "3ª", "2014", 1);
         books.add(b6);
-
 
 
         Book b7 = new Book(400, "Design Patterns: Elements of Reusable Object-Oriented Software", "AddisonWesley Professional",

@@ -10,7 +10,7 @@ public class Professor extends User {
 
     public Professor(String name, int id) {
         this.typeLoan = new LoanProfessor();
-        this.maxBooking = Integer.MAX_VALUE;
+        this.maxBooking = 3;
         this.maxLoan = Integer.MAX_VALUE;
         this.maxTimeLoan = 7;
         this.name = name;

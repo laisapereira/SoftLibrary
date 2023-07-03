@@ -10,7 +10,7 @@ public class PostGraduateStudent extends User {
 
     public PostGraduateStudent(String name, int id) {
         this.typeLoan = new LoanPostGraduateStudent();
-        this.maxBooking = Integer.MAX_VALUE;
+        this.maxBooking = 3;
         this.maxLoan = 4;
         this.maxTimeLoan = 4;
         this.name = name;
