@@ -2,6 +2,7 @@ package library;
 
 import library.books.Book;
 import library.books.BookCopy;
+import library.controllers.observers.IObserver;
 import library.services.Booking;
 import library.services.Loan;
 
@@ -126,8 +127,16 @@ public class Library {
 
     }
 
+    public void addObserver(int userId, int bookId){
+        getBookById(bookId).addObserver((IObserver) getUserById(userId));
 
-    // add observador
+        System.out.println("Um aviso será enviado para o usuário de id: " + userId);
+    }
+
+    public void nftObserver(int userId){
+        IObserver observer = (IObserver) getUserById(userId);
+        System.out.println("Número de notificações: " + observer.sumNotifications());
+    }
 
 
 }

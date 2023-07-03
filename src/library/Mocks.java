@@ -1,6 +1,8 @@
 package library;
 
 import library.books.Book;
+import library.books.BookCopy;
+import library.services.Booking;
 import library.users.GraduateStudent;
 import library.users.PostGraduateStudent;
 import library.users.Professor;
@@ -69,7 +71,6 @@ public class Mocks {
     }
 
     public void setMockUsers() {
-        ArrayList<User> users = new ArrayList<User>();
         User professor = new Professor("Carlos Lucena", 100);
         users.add(professor);
 
@@ -83,6 +84,13 @@ public class Mocks {
         users.add(postGraduateStudent);
     }
 
+    public ArrayList<Book> getBooks() {
+        return books;
+    }
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
 
 
 

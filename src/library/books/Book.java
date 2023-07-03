@@ -25,7 +25,7 @@ public class Book implements Notify {
     private List<IObserver> notifyList;
 
     ArrayList<BookCopy> bookCopies;
-    ArrayList <Booking> bookings;
+    ArrayList<Booking> bookings;
 
 
     public Book(int id, String title, String publishers, String authors, String edition, String yearPublication,
@@ -56,6 +56,10 @@ public class Book implements Notify {
 
     public String getTitle() {
         return title;
+    }
+
+    public void addBookCopies(BookCopy bookCopy){
+        bookCopies.add(bookCopy);
     }
 
     public ArrayList<BookCopy> getBookCopiesAvaliable() {
