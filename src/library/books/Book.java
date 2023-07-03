@@ -132,7 +132,7 @@ public class Book implements Notify {
         return activeBookings;
     }
 
-    public void aboutBooking(){
+    public void aboutBooking() {
         int amountActiveBookings = getActiveBookings().size();
 
         System.out.println("Título do livro: " + this.getTitle());
@@ -156,7 +156,7 @@ public class Book implements Notify {
         for (BookCopy bookCopy : this.getBookCopiesUnavaliable()) {
             Loan loan = bookCopy.getLoan();
             User userLoan = loan.getUser();
-            System.out.println(bookCopy.getId() + " PARA: " + userLoan.getName() +
+            System.out.println(bookCopy.getId() + " Para: " + userLoan.getName() +
                     " - Data do emprestimo: " + loan.getDateStartLoan() + " - Data esperada para devolução: " +
                     loan.dateExpectedReturn());
         }

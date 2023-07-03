@@ -84,7 +84,7 @@ public class Library {
             Booking booking = new Booking(user, book);
             user.addBooking(booking);
             book.addBooking(booking);
-            System.out.println("Reserva realizada de " + book.getTitle() + "para" + user.getName());
+            System.out.println("Reserva realizada de " + book.getTitle() + "  para  " + user.getName());
 
         }
 
@@ -105,10 +105,7 @@ public class Library {
             Loan loan = new Loan(user, bookCopy);
             bookCopy.setLoan(loan);
             user.addLoan(loan);
-            System.out.println("Empréstimo realizado de " + book.getTitle() + "para" + user.getName());
-
-
-            System.out.println("Empréstimo realizado de " + book.getTitle() + "para" + user.getName());
+            System.out.println("Empréstimo realizado de " + book.getTitle() + " para " + user.getName());
 
         }
     }
@@ -121,7 +118,7 @@ public class Library {
         Loan loan = user.getLoanByUser(book);
 
         loan.cancelLoan();
-        System.out.println("Livro " + book.getTitle() + "devolvido com sucesso de" + user.getName());
+        System.out.println("Livro " + book.getTitle() + " devolvido com sucesso de " + user.getName());
 
 
     }

@@ -34,7 +34,7 @@ public class LoanPostGraduateStudent implements ILoan {
 
         }
 
-        if (book.getAmountBookings() < book.getBookCopiesAvaliable().size()) {
+        if (book.getBookCopiesAvaliable().size() < book.getAmountBookings()) {
             System.out.println("Não foi possível realizar o empréstimo do livro: " + book.getTitle() +
                     " para o usuário: " + user.getName() + ", pois todas as cópias disponíveis estão reservadas.");
             return false;
