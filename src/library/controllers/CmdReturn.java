@@ -10,9 +10,8 @@ public class CmdReturn implements Controller{
     public void execute(List<String> args) {
         Library library = Library.getInstance();
 
-        int idUser = Integer.parseInt(args.get(1));
+       int idUser = Integer.parseInt(args.get(1));
         int idBook = Integer.parseInt(args.get(2));
-
 
         library.returnBook(idUser, idBook);
     }

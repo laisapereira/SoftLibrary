@@ -8,7 +8,7 @@ import library.users.User;
 public class LoanGraduateStudent implements ILoan {
     @Override
     public boolean validateLoan(User user, Book book) {
-        if (!book.isAvailable()) {
+        if (book.isAvailable()) {
             System.out.println("Não foi possível realizar o empréstimo do livro: " + book.getTitle() +
                     " para o usuário: " + user.getName() + ", pois não há exemplares disponíveis.");
             return false;
@@ -26,6 +26,12 @@ public class LoanGraduateStudent implements ILoan {
             return false;
         }
 
+        if (book.getBookCopiesAvaliable().size() < book.getAmountBookings()) {
+            System.out.println("Não foi possível realizar o empréstimo do livro: " + book.getTitle() +
+                    " para o usuário: " + user.getName() + ", pois todas as cópias disponíveis estão reservadas.");
+            return false;
+        }
+
         if (user.activeLoanByUser(book)) {
             System.out.println("Não foi possível realizar o empréstimo do livro: " + book.getTitle() +
                     " para o usuário: " + user.getName() + ", pois o usuário já possui um empréstimo em andamento do mesmo livro.");
@@ -33,11 +39,6 @@ public class LoanGraduateStudent implements ILoan {
 
         }
 
-        if (book.getAmountBookings() < book.getBookCopiesAvaliable().size()) {
-            System.out.println("Não foi possível realizar o empréstimo do livro: " + book.getTitle() +
-                    " para o usuário: " + user.getName() + ", pois todas as cópias disponíveis estão reservadas.");
-            return false;
-        }
 
         return true;
     }

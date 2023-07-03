@@ -18,7 +18,6 @@ public class Loan {
     public Loan(User user, BookCopy bookCopy) {
         this.user = user;
         this.bookCopy = bookCopy;
-        this.dateEndingLoan = null;
         this.dateStartLoan = LocalDate.now();
         this.isActive = true;
     }
@@ -46,7 +45,7 @@ public class Loan {
     public void cancelLoan() {
         dateEndingLoan = LocalDate.now();
         isActive = false;
-        this.bookCopy.setAvailable(true);
+        /*this.bookCopy.setAvailable(true);*/
     }
 
     public LocalDate dateExpectedReturn() {

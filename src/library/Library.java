@@ -69,7 +69,7 @@ public class Library {
     public void aboutBook(int bookId){
         Book book = getBookById(bookId);
         System.out.println(book.toString());
-        book.aboutAvailability();
+       /* book.aboutAvailability();*/
         book.aboutBooking();
         book.aboutLoan();
     }
@@ -88,7 +88,6 @@ public class Library {
 
         }
 
-
     }
 
     public void Loan(int userId, int bookId){
@@ -97,9 +96,9 @@ public class Library {
 
         if (user.allowedLoan(book)) {
             if (book.isAvailable()) {
-                Loan loan = user.getLoanByUser(book);
-                if (loan != null) {
-                    loan.cancelLoan();
+                Booking booking = user.getActiveBookingByUser(book);
+                if (booking != null) {
+                    booking.cancelBooking();
                 }
             }
             BookCopy bookCopy = book.getBookCopyLoanable();

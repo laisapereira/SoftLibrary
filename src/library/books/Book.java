@@ -139,8 +139,8 @@ public class Book implements Notify {
         System.out.println("Quantidade de reservas: " + amountActiveBookings);
 
         if (amountActiveBookings > 0) {
-            for (Booking booking: this.getActiveBookings()) {
-                System.out.println("Reserva realizada por:" + booking.getUser().getName() );
+            for (Booking booking : this.getActiveBookings()) {
+                System.out.println("Reserva realizada com sucesso por: " + booking.getUser().getName());
 
             }
         }
@@ -152,7 +152,7 @@ public class Book implements Notify {
     }
 
     public void aboutLoan() {
-        System.out.println("Empréstimos realizados: ");
+        System.out.println("Empréstimos realizados: " + this.getBookCopiesUnavaliable().size());
         for (BookCopy bookCopy : this.getBookCopiesUnavaliable()) {
             Loan loan = bookCopy.getLoan();
             User userLoan = loan.getUser();
