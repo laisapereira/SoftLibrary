@@ -22,6 +22,7 @@ public class LoanProfessor implements ILoan {
             return false;
         }
 
+
         return true;
 
     }

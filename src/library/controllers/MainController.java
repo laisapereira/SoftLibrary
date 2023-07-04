@@ -28,7 +28,7 @@ public class MainController {
         Controller command = commands.get(toDo);
         if (command != null) {
             command.execute(input);
-        } else{
+        } else {
             System.out.println("Comando não encontrado: " + toDo);
         }
     }
