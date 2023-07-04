@@ -1,13 +1,17 @@
 package library.services.books;
 
+import library.services.Booking;
 import library.services.Loan;
 
 public class BookCopy {
 
     private int id;
+
     private Book book;
 
     private Loan loan;
+
+    private Booking booking;
 
     public void setLoan(Loan loan) {
         this.loan = loan;
@@ -28,6 +32,10 @@ public class BookCopy {
 
     public Book getBook() {
         return book;
+    }
+
+    public Booking getBooking() {
+        return booking;
     }
 
 

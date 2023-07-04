@@ -7,7 +7,7 @@ import library.services.users.User;
 
 
 public class LoanProfessor implements ILoan {
-    @Override
+
     public boolean validateLoan(User user, Book book) {
 
         if (!book.isAvailable()) {

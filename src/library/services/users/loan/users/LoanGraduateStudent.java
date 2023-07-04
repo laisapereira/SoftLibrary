@@ -7,41 +7,35 @@ import library.services.users.User;
 
 public class LoanGraduateStudent implements ILoan {
     @Override
+
     public boolean validateLoan(User user, Book book) {
-        if (!book.isAvailable()) {
-            System.out.println("Não foi possível realizar o empréstimo do livro: " + book.getTitle() +
-                    " para o usuário: " + user.getName() + ", pois não há exemplares disponíveis.");
+        if (!user.isDebtor()) {
+            if (user.getAmountActiveLoan() < user.getMaxTimeLoan()) {
+                if (!user.activeLoanByUser(book)) {
+                    if (book.getAmountCopiesAvailable() > book.getAmountBookings()) {
+                        return true;
+                    } else {
+                        if (user.activeLoanByUser(book) || user.activeBookingByUser(book)){
+                            return true;
+                        } else {
+                            System.out.println("Não foi possível emprestar " + book.getTitle() + " para " + user.getName() + " pois todos os exemplares já estão reservados ou emprestados.");
+                            return false;
+                        }
+                    }
+                } else {
+                    System.out.println("Não foi possível emprestar o livro " + book.getTitle() + " para " + user.getName() + ", pois este usuário já pegou esse livro emprestado");
+                    return false;
+                }
+            } else {
+                System.out.println("Não foi possível emprestar " + book.getTitle() + " para " + user.getName() + " , porque ele execeu o limite de empréstimos.");
+                return false;
+            }
+        } else {
+            System.out.println("Não foi possível emprestar " + book.getTitle() + " PARA O: " + user.getName() +
+                    " , pois o usuário está em débito.");
             return false;
         }
-
-        if (user.isDebtor()) {
-            System.out.println("Não foi possível realizar o empréstimo do livro: " + book.getTitle() +
-                    " para o usuário: " + user.getName() + ", pois o usuário está em débito.");
-            return false;
-        }
-
-        if (user.getAmountActiveLoan() >= user.getMaxLoan()) {
-            System.out.println("Não foi possível realizar o empréstimo do livro: " + book.getTitle() +
-                    " para o usuário: " + user.getName() + ", pois o usuário atingiu o limite máximo de empréstimos.");
-            return false;
-        }
-
-        if (user.activeLoanByUser(book)) {
-            System.out.println("Não foi possível realizar o empréstimo do livro: " + book.getTitle() +
-                    " para o usuário: " + user.getName() + ", pois o usuário já possui um empréstimo em andamento do mesmo livro.");
-            return false;
-
-        }
-
-        if (book.getBookCopiesAvaliable().size() < book.getAmountBookings()) {
-            System.out.println("Não foi possível realizar o empréstimo do livro: " + book.getTitle() +
-                    " para o usuário: " + user.getName() + ", pois todas as cópias disponíveis estão reservadas.");
-            return false;
-        }
-
-        return true;
     }
-
 }
 
 

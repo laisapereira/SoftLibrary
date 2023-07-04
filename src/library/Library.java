@@ -76,17 +76,24 @@ public class Library {
 
     // ações usuário-livro
 
-    public void Booking(int userId, int bookId){
+    public void Booking(int userId, int bookId) {
         User user = getUserById(userId);
         Book book = getBookById(bookId);
 
+
         if (user.allowedBooking()) {
-            Booking booking = new Booking(user, book);
-            user.addBooking(booking);
-            book.addBooking(booking);
-            System.out.println("Reserva realizada de " + book.getTitle() + "  para  " + user.getName());
+            if (book.getAmountCopiesAvailable() > 0) {
+                Booking booking = new Booking(user, book);
+                user.addBooking(booking);
+                System.out.println("Reserva realizada de " + book.getTitle() + "  para  " + user.getName());
+            } else {
+                System.out.println("Reserva não realizada de " + book.getTitle() + "  para  " + user.getName()
+                        + " pois as cópias já estão todas reservadas.");
+            }
         }
+
     }
+
 
     public void Loan(int userId, int bookId){
         User user = getUserById(userId);
@@ -115,10 +122,13 @@ public class Library {
 
         Loan loan = user.getLoanByUser(book);
 
-        loan.cancelLoan();
-        System.out.println("Livro " + book.getTitle() + " devolvido com sucesso de " + user.getName());
-
-
+        if (loan != null) {
+            loan.cancelLoan();
+            System.out.println("Livro " + book.getTitle() + " devolvido com sucesso de " + user.getName());
+        } else {
+            System.out.println("Livro " + book.getTitle() + " não foi devolvido de " + user.getName() +
+                    " pois não há empréstimo ativo.");
+        }
     }
 
     // interacao classe observador

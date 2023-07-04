@@ -99,6 +99,15 @@ public abstract class User {
         return null;
     }
 
+    public boolean activeBookingByUser(Book book) {
+        for (Booking booking : amountBooking) {
+            if (booking.isActive() && (booking.getBook() == book)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean activeLoanByUser(Book book) {
         for (Loan loan : amountLoan) {
             if (loan.isActive() && (loan.getBookCopy().getBook() == book)) {
@@ -107,6 +116,7 @@ public abstract class User {
         }
         return false;
     }
+
 
     public int getAmountActiveLoan() {
         int amount = 0;

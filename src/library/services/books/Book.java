@@ -19,6 +19,8 @@ public class Book implements Notify {
     private String edition;
     private String yearPublication;
 
+    private User user;
+
 
     private List<IObserver> notifyList;
 
@@ -56,10 +58,11 @@ public class Book implements Notify {
 
 
     public ArrayList<BookCopy> getBookCopiesAvaliable() {
+
         ArrayList<BookCopy> bookCopiesAvaliable = new ArrayList<BookCopy>();
 
         for (BookCopy bookCopy : bookCopies) {
-            if (bookCopy.getLoan() == null) {
+            if (bookCopy.getLoan() == null ) {
                 bookCopiesAvaliable.add(bookCopy);
             } else if (!bookCopy.getLoan().isActive()) {
                 bookCopiesAvaliable.add(bookCopy);
@@ -70,12 +73,11 @@ public class Book implements Notify {
     }
 
 
-    public ArrayList<BookCopy> getBookCopiesUnavaliable() {
-
+    public ArrayList<BookCopy> getBookCopiesUnavailable() {
         ArrayList<BookCopy> bookCopiesUnavaliable = new ArrayList<BookCopy>();
 
         for (BookCopy bookCopy : bookCopies) {
-            if (bookCopy.getLoan() != null) {
+            if (bookCopy.getLoan() != null ) {
                 if (bookCopy.getLoan().isActive()) {
                     bookCopiesUnavaliable.add(bookCopy);
                 }
@@ -97,12 +99,21 @@ public class Book implements Notify {
     }
 
     public boolean isAvailable() {
-        return getBookCopiesAvaliable().size() > 0;
+        return getAmountCopiesAvailable() > 0;
     }
 
-    public int getAmountCopies() {
+
+    public int getAmountCopiesAvailable() {
+
         return getBookCopiesAvaliable().size();
     }
+
+    // para o usuário
+
+    public int getAmountCopiesToUser() {
+        return bookCopies.size() - getBookCopiesUnavailable().size() - bookings.size();
+    }
+
 
     public BookCopy getBookCopyLoanable() {
         return getBookCopiesAvaliable().get(0);
@@ -134,12 +145,12 @@ public class Book implements Notify {
     }
 
     public void aboutAvailability() {
-        System.out.println("Cópias disponíveis (número): " + this.getAmountCopies());
+        System.out.println("Cópias disponíveis (número): " + this.getAmountCopiesToUser());
     }
 
     public void aboutLoan() {
-        System.out.println("Empréstimos realizados: " + this.getBookCopiesUnavaliable().size());
-        for (BookCopy bookCopy : this.getBookCopiesUnavaliable()) {
+        System.out.println("Empréstimos realizados: " + this.getBookCopiesUnavailable().size());
+        for (BookCopy bookCopy : this.getBookCopiesUnavailable()) {
             Loan loan = bookCopy.getLoan();
             User userLoan = loan.getUser();
             System.out.println(bookCopy.getId() + " Para: " + userLoan.getName() +
