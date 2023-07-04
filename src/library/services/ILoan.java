@@ -6,5 +6,5 @@ import library.services.users.User;
 
 
 public interface ILoan {
-    public boolean validateLoan(User user, Book book);
+    boolean validateLoan(User user, Book book);
 }
