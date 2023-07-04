@@ -1,6 +1,7 @@
 package library.controllers.observers;
 
 public interface IObserver {
-    public void update();
-    public int sumNotifications();
+    void update();
+
+    int sumNotifications();
 }

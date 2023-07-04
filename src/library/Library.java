@@ -57,7 +57,7 @@ public class Library {
     // sobre os livros
 
 
-    public Book getBookById(int id){
+    public Book getBookById(int id) {
         for (Book book : books) {
             if (book.getId() == id) {
                 return book;
@@ -136,12 +136,13 @@ public class Library {
     public void addObserver(int userId, int bookId){
         getBookById(bookId).addObserver((IObserver) getUserById(userId));
 
-        System.out.println("Um aviso será enviado para o usuário de id: " + userId);
+        System.out.println("Uma notificação será enviada para o usuário de id: " + userId);
     }
 
     public void nftObserver(int userId){
         IObserver observer = (IObserver) getUserById(userId);
-        System.out.println("Número de notificações: " + observer.sumNotifications());
+        System.out.println("Número de vezes que o usuario de id " + userId + " foi notificado: "
+                + observer.sumNotifications());
     }
 
 
