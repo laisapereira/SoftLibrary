@@ -10,7 +10,7 @@ public class LoanProfessor implements ILoan {
 
     public boolean validateLoan(User user, Book book) {
 
-        if (!book.isAvailable()) {
+        if (!book.isAvailableProfessor()) {
             System.out.println("Não foi possível realizar o empréstimo do livro: " + book.getTitle() +
                     " para o usuário: " + user.getName() + ", pois não há exemplares disponíveis.");
             return false;

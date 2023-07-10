@@ -82,9 +82,10 @@ public class Library {
 
 
         if (user.allowedBooking()) {
-            if (book.getAmountCopiesAvailable() > 0) {
+            if (book.getAmountCopiesAvailableStudent() > 0) {
                 Booking booking = new Booking(user, book);
                 user.addBooking(booking);
+
                 System.out.println("Reserva realizada de " + book.getTitle() + "  para  " + user.getName());
             } else {
                 System.out.println("Reserva não realizada de " + book.getTitle() + "  para  " + user.getName()
@@ -94,7 +95,6 @@ public class Library {
 
     }
 
-
     public void Loan(int userId, int bookId){
         User user = getUserById(userId);
         Book book = getBookById(bookId);
@@ -102,17 +102,18 @@ public class Library {
         if (user.allowedLoan(book)) {
             if (book.isAvailable()) {
                 Booking booking = user.getActiveBookingByUser(book);
-                if (booking != null) {
+                if (booking != null || (book.getActiveBookings() != null && !user.activeBookingByUser(book))) {
+                    assert booking != null;
                     booking.cancelBooking();
                 }
             }
-            BookCopy bookCopy = book.getBookCopyLoanable();
-            Loan loan = new Loan(user, bookCopy);
-            bookCopy.setLoan(loan);
-            user.addLoan(loan);
-            System.out.println("Empréstimo realizado de " + book.getTitle() + " para " + user.getName());
-
         }
+        BookCopy bookCopy = book.getBookCopyLoanable();
+        Loan loan = new Loan(user, bookCopy);
+        bookCopy.setLoan(loan);
+        user.addLoan(loan);
+        System.out.println("Empréstimo realizado de " + book.getTitle() + " para " + user.getName());
+
     }
 
 

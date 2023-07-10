@@ -12,7 +12,7 @@ public class LoanGraduateStudent implements ILoan {
         if (!user.isDebtor()) {
             if (user.getAmountActiveLoan() < user.getMaxTimeLoan()) {
                 if (!user.activeLoanByUser(book)) {
-                    if (book.getAmountCopiesAvailable() > book.getAmountBookings()) {
+                    if (book.getAmountCopiesAvailableStudent() > book.getAmountBookings()) {
                         return true;
                     } else {
                         if (user.activeLoanByUser(book) || user.activeBookingByUser(book)){

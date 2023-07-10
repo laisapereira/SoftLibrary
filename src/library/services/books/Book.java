@@ -62,9 +62,9 @@ public class Book implements Notify {
         ArrayList<BookCopy> bookCopiesAvaliable = new ArrayList<BookCopy>();
 
         for (BookCopy bookCopy : bookCopies) {
-            if (bookCopy.getLoan() == null ) {
+            if (bookCopy.getLoan() == null && bookCopy.getBooking() == null ) {
                 bookCopiesAvaliable.add(bookCopy);
-            } else if (!bookCopy.getLoan().isActive()) {
+            } else if (!bookCopy.getLoan().isActive() && !bookCopy.getBooking().isActive()) {
                 bookCopiesAvaliable.add(bookCopy);
             }
         }
@@ -77,8 +77,8 @@ public class Book implements Notify {
         ArrayList<BookCopy> bookCopiesUnavaliable = new ArrayList<BookCopy>();
 
         for (BookCopy bookCopy : bookCopies) {
-            if (bookCopy.getLoan() != null ) {
-                if (bookCopy.getLoan().isActive()) {
+            if (bookCopy.getLoan() != null && bookCopy.getBooking() != null) {
+                if (bookCopy.getLoan().isActive() && bookCopy.getBooking().isActive()) {
                     bookCopiesUnavaliable.add(bookCopy);
                 }
             }
@@ -99,13 +99,17 @@ public class Book implements Notify {
     }
 
     public boolean isAvailable() {
-        return getAmountCopiesAvailable() > 0;
+        return getAmountCopiesAvailableStudent() > 0;
+    }
+
+    public boolean isAvailableProfessor() {
+        return getBookCopiesAvaliable().size() > 0;
     }
 
 
-    public int getAmountCopiesAvailable() {
+    public int getAmountCopiesAvailableStudent() {
 
-        return getBookCopiesAvaliable().size();
+        return this.getAmountCopiesToUser();
     }
 
     // para o usuário
